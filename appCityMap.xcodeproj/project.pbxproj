@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		507A6E158B2A8DD762D484E3 /* Pods_appCityMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DFAEB263298EB4CC26B498F /* Pods_appCityMap.framework */; };
 		FE6CFCD323531EC3008AB56C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6CFCD223531EC3008AB56C /* AppDelegate.swift */; };
 		FE6CFCD523531EC3008AB56C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6CFCD423531EC3008AB56C /* SceneDelegate.swift */; };
 		FE6CFCD723531EC3008AB56C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6CFCD623531EC3008AB56C /* ViewController.swift */; };
@@ -16,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4DFAEB263298EB4CC26B498F /* Pods_appCityMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_appCityMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FC99F2D481EE5DAC2FB854A /* Pods-appCityMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-appCityMap.debug.xcconfig"; path = "Target Support Files/Pods-appCityMap/Pods-appCityMap.debug.xcconfig"; sourceTree = "<group>"; };
+		BC6DD4E532D6C73955AB7774 /* Pods-appCityMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-appCityMap.release.xcconfig"; path = "Target Support Files/Pods-appCityMap/Pods-appCityMap.release.xcconfig"; sourceTree = "<group>"; };
 		FE6CFCCF23531EC3008AB56C /* appCityMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appCityMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE6CFCD223531EC3008AB56C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE6CFCD423531EC3008AB56C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +35,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				507A6E158B2A8DD762D484E3 /* Pods_appCityMap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BD2BC1DB7287A8C0D1E0768 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9FC99F2D481EE5DAC2FB854A /* Pods-appCityMap.debug.xcconfig */,
+				BC6DD4E532D6C73955AB7774 /* Pods-appCityMap.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		1EC83B080319144AAB26EF03 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4DFAEB263298EB4CC26B498F /* Pods_appCityMap.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FE6CFCC623531EC3008AB56C = {
 			isa = PBXGroup;
 			children = (
 				FE6CFCD123531EC3008AB56C /* appCityMap */,
 				FE6CFCD023531EC3008AB56C /* Products */,
+				0BD2BC1DB7287A8C0D1E0768 /* Pods */,
+				1EC83B080319144AAB26EF03 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FE6CFCE323531EC3008AB56C /* Build configuration list for PBXNativeTarget "appCityMap" */;
 			buildPhases = (
+				11175FDD02A2B0A5D2DD08AE /* [CP] Check Pods Manifest.lock */,
 				FE6CFCCB23531EC3008AB56C /* Sources */,
 				FE6CFCCC23531EC3008AB56C /* Frameworks */,
 				FE6CFCCD23531EC3008AB56C /* Resources */,
+				85791A9410A8F0275AF91792 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		11175FDD02A2B0A5D2DD08AE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-appCityMap-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		85791A9410A8F0275AF91792 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-appCityMap/Pods-appCityMap-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-appCityMap/Pods-appCityMap-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-appCityMap/Pods-appCityMap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FE6CFCCB23531EC3008AB56C /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		FE6CFCE423531EC3008AB56C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FC99F2D481EE5DAC2FB854A /* Pods-appCityMap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +370,7 @@
 		};
 		FE6CFCE523531EC3008AB56C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC6DD4E532D6C73955AB7774 /* Pods-appCityMap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
