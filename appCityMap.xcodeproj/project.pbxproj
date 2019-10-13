@@ -3,14 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		507A6E158B2A8DD762D484E3 /* Pods_appCityMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DFAEB263298EB4CC26B498F /* Pods_appCityMap.framework */; };
 		FE6CFCD323531EC3008AB56C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6CFCD223531EC3008AB56C /* AppDelegate.swift */; };
 		FE6CFCD523531EC3008AB56C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6CFCD423531EC3008AB56C /* SceneDelegate.swift */; };
-		FE6CFCD723531EC3008AB56C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6CFCD623531EC3008AB56C /* ViewController.swift */; };
+		FE6CFCD723531EC3008AB56C /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6CFCD623531EC3008AB56C /* MapVC.swift */; };
 		FE6CFCDA23531EC3008AB56C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE6CFCD823531EC3008AB56C /* Main.storyboard */; };
 		FE6CFCDC23531EC3008AB56C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE6CFCDB23531EC3008AB56C /* Assets.xcassets */; };
 		FE6CFCDF23531EC3008AB56C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE6CFCDD23531EC3008AB56C /* LaunchScreen.storyboard */; };
@@ -23,7 +23,7 @@
 		FE6CFCCF23531EC3008AB56C /* appCityMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appCityMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE6CFCD223531EC3008AB56C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE6CFCD423531EC3008AB56C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FE6CFCD623531EC3008AB56C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FE6CFCD623531EC3008AB56C /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		FE6CFCD923531EC3008AB56C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FE6CFCDB23531EC3008AB56C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE6CFCDE23531EC3008AB56C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,7 +48,6 @@
 				9FC99F2D481EE5DAC2FB854A /* Pods-appCityMap.debug.xcconfig */,
 				BC6DD4E532D6C73955AB7774 /* Pods-appCityMap.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -81,15 +80,23 @@
 		FE6CFCD123531EC3008AB56C /* appCityMap */ = {
 			isa = PBXGroup;
 			children = (
+				FE6CFCE6235320B5008AB56C /* Controller */,
 				FE6CFCD223531EC3008AB56C /* AppDelegate.swift */,
 				FE6CFCD423531EC3008AB56C /* SceneDelegate.swift */,
-				FE6CFCD623531EC3008AB56C /* ViewController.swift */,
 				FE6CFCD823531EC3008AB56C /* Main.storyboard */,
 				FE6CFCDB23531EC3008AB56C /* Assets.xcassets */,
 				FE6CFCDD23531EC3008AB56C /* LaunchScreen.storyboard */,
 				FE6CFCE023531EC3008AB56C /* Info.plist */,
 			);
 			path = appCityMap;
+			sourceTree = "<group>";
+		};
+		FE6CFCE6235320B5008AB56C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FE6CFCD623531EC3008AB56C /* MapVC.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,7 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE6CFCD723531EC3008AB56C /* ViewController.swift in Sources */,
+				FE6CFCD723531EC3008AB56C /* MapVC.swift in Sources */,
 				FE6CFCD323531EC3008AB56C /* AppDelegate.swift in Sources */,
 				FE6CFCD523531EC3008AB56C /* SceneDelegate.swift in Sources */,
 			);
@@ -357,6 +364,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S34YM3S85L;
 				INFOPLIST_FILE = appCityMap/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -376,6 +384,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S34YM3S85L;
 				INFOPLIST_FILE = appCityMap/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
