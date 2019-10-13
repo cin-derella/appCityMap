@@ -7,6 +7,7 @@
 //
 
 import UIKit
+/*
 @available(iOS 13, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -51,3 +52,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+*/
