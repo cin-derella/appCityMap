@@ -147,10 +147,14 @@ extension MapVC:MKMapViewDelegate{
         addSpinner()
         addProgressLbl()
         
+        
+        
         let touchPoint = sender.location(in: mapView)
         let touchCoordinate = mapView.convert(touchPoint,toCoordinateFrom: mapView)
         let annotation = DroppablePin(coordinate: touchCoordinate, identifier: "droppablePin")
         mapView.addAnnotation(annotation)
+        
+        print(flickrUrl(forApiKey: apiKey, withAnnotation: annotation, andNumberOfPhotos: 40))
         
         let coordinateRegion = MKCoordinateRegion(center: touchCoordinate,latitudinalMeters: regionRadius*3, longitudinalMeters: regionRadius*3)
         mapView.setRegion(coordinateRegion, animated: true)
