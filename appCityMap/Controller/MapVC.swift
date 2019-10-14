@@ -103,14 +103,14 @@ class MapVC: UIViewController,UIGestureRecognizerDelegate {
         progressLbl?.font = UIFont(name: "Avenir", size: 14)
         progressLbl?.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         progressLbl?.textAlignment = .center
-        progressLbl?.text = "12/40 PHOTOS LOADED"
+        //progressLbl?.text = "12/40 PHOTOS LOADED"
         collectionView?.addSubview(progressLbl!)
         
     }
     
     func removeProgressLbl(){
         if progressLbl != nil{
-            spinner?.removeFromSuperview()
+            progressLbl?.removeFromSuperview()
         }
     }
     
@@ -149,6 +149,12 @@ extension MapVC:MKMapViewDelegate{
         removeProgressLbl()
         cancelAllSessions()
         
+        
+        imageUrlArray = []
+        imageArray = []
+
+        collectionView?.reloadData()
+        
         animateViewUP()
         addSwipe()
         addSpinner()
@@ -177,6 +183,7 @@ extension MapVC:MKMapViewDelegate{
                         //hide lable
                         self.removeProgressLbl()
                         //reload colledtionview
+                        self.collectionView?.reloadData()
                     }
                 })
             }
@@ -190,7 +197,7 @@ extension MapVC:MKMapViewDelegate{
     }
     
     func retrieveUrls(forAnnotation annotation: DroppablePin,handler:@escaping(_ status:Bool)->()){
-        imageUrlArray = []
+       
         Alamofire.request(flickrUrl(forApiKey: apiKey, withAnnotation: annotation, andNumberOfPhotos: 40)).responseJSON { (response) in
             guard let json = response.result.value as? Dictionary<String,AnyObject> else{return}
             let photosDict = json["photos"]as!Dictionary<String,AnyObject>
@@ -198,6 +205,7 @@ extension MapVC:MKMapViewDelegate{
             
             for photo in photoDictArray{
                 let postUrl = "https://farm\(photo["farm"]!).staticflickr.com/\(photo["server"]!)/\(photo["id"]!)_\(photo["secret"]!)_m.jpg"
+                debugPrint(postUrl)
                 self.imageUrlArray.append(postUrl)
             }
             handler(true)
@@ -205,7 +213,7 @@ extension MapVC:MKMapViewDelegate{
     }
     
     func retrieveImages(handler: @escaping(_ status:Bool)->()) {
-        imageArray = []
+  
         
         for url in imageUrlArray{
             Alamofire.request(url).responseImage(completionHandler: { (response) in
@@ -254,12 +262,15 @@ extension MapVC:UICollectionViewDelegate,UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //number of items in array
-        return 4
+        return imageArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for:indexPath)as? PhotoCell
-        return cell!
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for:indexPath)as? PhotoCell else {return UICollectionViewCell()}
+        let imageFromIndex = imageArray[indexPath.row]
+        let imageView = UIImageView(image: imageFromIndex)
+        cell.addSubview(imageView)
+        return cell
     }
     
 }
