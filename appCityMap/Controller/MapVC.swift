@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Alamofire
+import AlamofireImage
 
 class MapVC: UIViewController,UIGestureRecognizerDelegate {
     @IBOutlet weak var mapView: MKMapView!
@@ -27,6 +29,8 @@ class MapVC: UIViewController,UIGestureRecognizerDelegate {
     
     var flowLayout = UICollectionViewFlowLayout()
     var collectionView:UICollectionView?
+    
+    var imageUrlArray = [String]()
     
     
     
@@ -149,6 +153,7 @@ extension MapVC:MKMapViewDelegate{
         
         
         
+        
         let touchPoint = sender.location(in: mapView)
         let touchCoordinate = mapView.convert(touchPoint,toCoordinateFrom: mapView)
         let annotation = DroppablePin(coordinate: touchCoordinate, identifier: "droppablePin")
@@ -158,11 +163,30 @@ extension MapVC:MKMapViewDelegate{
         
         let coordinateRegion = MKCoordinateRegion(center: touchCoordinate,latitudinalMeters: regionRadius*3, longitudinalMeters: regionRadius*3)
         mapView.setRegion(coordinateRegion, animated: true)
+        
+        retrieveUrls(forAnnotation: annotation) { (true) in
+            print(self.imageUrlArray)
+        }
     }
     
     func removePin(){
         for annotation in mapView.annotations{
             mapView.removeAnnotation(annotation)
+        }
+    }
+    
+    func retrieveUrls(forAnnotation annotation: DroppablePin,handler:@escaping(_ status:Bool)->()){
+        imageUrlArray = []
+        Alamofire.request(flickrUrl(forApiKey: apiKey, withAnnotation: annotation, andNumberOfPhotos: 40)).responseJSON { (response) in
+            guard let json = response.result.value as? Dictionary<String,AnyObject> else{return}
+            let photosDict = json["photos"]as!Dictionary<String,AnyObject>
+            let photoDictArray = photosDict["photo"]as! [Dictionary<String,AnyObject>]
+            
+            for photo in photoDictArray{
+                let postUrl = "https://farm\(photo["farm"]!).staticflickr.com/\(photo["server"]!)/\(photo["id"]!)_\(photo["secret"]!)_m.jpg"
+                self.imageUrlArray.append(postUrl)
+            }
+            handler(true)
         }
     }
   }
