@@ -46,7 +46,7 @@ class MapVC: UIViewController,UIGestureRecognizerDelegate {
         collectionView?.register(PhotoCell.self, forCellWithReuseIdentifier: "photoCell")
         collectionView?.delegate = self
         collectionView?.dataSource = self
-        collectionView?.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        collectionView?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         pullUpView.addSubview(collectionView!)
         
@@ -204,7 +204,7 @@ extension MapVC:MKMapViewDelegate{
             let photoDictArray = photosDict["photo"]as! [Dictionary<String,AnyObject>]
             
             for photo in photoDictArray{
-                let postUrl = "https://farm\(photo["farm"]!).staticflickr.com/\(photo["server"]!)/\(photo["id"]!)_\(photo["secret"]!)_m.jpg"
+                let postUrl = "https://farm\(photo["farm"]!).staticflickr.com/\(photo["server"]!)/\(photo["id"]!)_\(photo["secret"]!)_b.jpg"
                 debugPrint(postUrl)
                 self.imageUrlArray.append(postUrl)
             }
@@ -273,4 +273,9 @@ extension MapVC:UICollectionViewDelegate,UICollectionViewDataSource{
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let popVC = storyboard?.instantiateViewController(withIdentifier: "PopVC") as? PopVC else{return}
+        popVC.initData(forImage:imageArray[indexPath.row])
+        present(popVC, animated: true, completion: nil)
+    }
 }
